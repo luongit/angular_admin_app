@@ -1,0 +1,116 @@
+<section class="content-header">
+  <h1><i class="fa fa-user"></i> Quản lý khách</h1>
+</section>
+
+<!-- Main content -->
+<section class="content">
+  <div class="box">
+
+    <div class="box-body">
+
+      <form action="" method="POST" class="form-inline" role="form">
+
+        <div class="form-group">
+          <input type="email" class="form-control" id="" placeholder="Input field">
+        </div>
+
+        <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
+
+        <button *ngIf="!isShow" (click)="onShow()" type="button" class="btn btn-success pull-right"><i
+            class="fa fa-plus"></i> Thêm mới</button>
+        <button *ngIf="isShow" (click)="onShow()" type="button" class="btn btn-danger pull-right"><i
+            class="fa fa-plus"></i> Bỏ qua</button>
+      </form>
+      <br />
+
+    </div>
+  </div>
+  <!-- Default box -->
+  <div class="box">
+    <div [ngClass]="isShow ? 'col-md-8' : 'col-md-12'">
+      <div class="box-header">
+        <h3 class="box-title"><i class="fa fa-table"></i> Danh sách các đoàn khách</h3>
+      </div>
+      <div class="box-body">
+        <div class="table-responsive">
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th>STT</th>
+                <th>Người tiếp đoàn</th>
+                <th>Người giới thiệu</th>
+                <th>Đại diện đoàn</th>
+                <th>Số ĐT đại diện đoàn</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let d of data | paginate: {
+                      itemsPerPage: pageSize,
+                      currentPage: p,
+                      totalItems: total }; let i = index">
+                <td>{{ i + 1}}</td>
+                <td>{{ d.nguoiTiepDoan}}</td>
+                <td>{{ d.nguoiTiepDoan}}</td>
+                <td>{{ d.nguoiTiepDoan}}</td>
+                <td>{{ d.nguoiTiepDoan}}</td>
+                <td class="text-right">
+                  <button class="btn btn-primary"><i class="fa fa-edit"></i> Sửa</button>
+                  <button class="btn btn-danger" style="margin-left: 5px;"><i class="fa fa-trash"></i> Xóa</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <pagination-controls (pageChange)="pageChanged($event)" (pageBoundsCorrection)="pageChanged($event)"
+          [maxSize]="9" [directionLinks]="true" [autoHide]="true" [responsive]="true" previousLabel="Lùi"
+          nextLabel="Tiếp" screenReaderPaginationLabel="Pagination" screenReaderPageLabel="page"
+          screenReaderCurrentLabel="You're on page">
+        </pagination-controls>
+
+      </div>
+    </div>
+
+    <div *ngIf="isShow" [ngClass]="isShow ? 'col-md-4' : 'col-md-12'">
+      <div class="box">
+
+        <div class="box-header">
+          <h3 class="box-title"><i class="fa fa-table"></i> Thêm/ chỉnh sửa thông tin đoàn khách</h3>
+        </div>
+        <div class="box-body">
+
+          <form action="" method="POST">
+
+            <div class="form-group">
+              <label for="">Người tiếp đoàn</label>
+              <input class="form-control" id="" placeholder="Họ tên người tiếp đoàn">
+            </div>
+            <div class="form-group">
+              <label for="">Người tiếp đoàn</label>
+              <input class="form-control" id="" placeholder="Họ tên người tiếp đoàn">
+            </div>
+            <div class="form-group">
+              <label for="">Người tiếp đoàn</label>
+              <input class="form-control" id="" placeholder="Họ tên người tiếp đoàn">
+            </div>
+            <div class="form-group">
+              <label for="">Người tiếp đoàn</label>
+              <input class="form-control" id="" placeholder="Họ tên người tiếp đoàn">
+            </div>
+
+            <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Lưu lại</button>
+            <button type="rest" class="btn btn-danger pull-right"><i class="fa fa-refresh"></i> Mặc định</button>
+
+          </form>
+
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+  <!-- /.box -->
+
+</section>
+<!-- /.content -->
